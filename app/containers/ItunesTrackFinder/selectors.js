@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 import { createSelector } from 'reselect';
-import { initialState } from '@store/reducers/app';
+import { initialState } from './reducer';
 
 /**
  * Direct selector to the searchContainer state domain

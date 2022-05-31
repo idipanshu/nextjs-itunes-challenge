@@ -1,6 +1,6 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 import { getSongs, getSongDetails } from '@services/songApi';
-import { searchContainerTypes, searchContainerCreators } from '@store/reducers/app';
+import { searchContainerTypes, searchContainerCreators } from './reducer';
 
 const { REQUEST_GET_SONGS, REQUEST_GET_SONG_DETAILS } = searchContainerTypes;
 const { successGetSongs, successGetSongDetails, failureGetSongs } = searchContainerCreators;
