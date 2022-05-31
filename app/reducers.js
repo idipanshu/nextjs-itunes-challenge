@@ -7,6 +7,7 @@ import { combineReducers } from 'redux';
 
 import repos from './containers/Repos/reducer';
 import info from './containers/Info/reducer';
+import appReducer from '@app/containers/ItunesFinderContainer/reducer';
 
 enableAllPlugins();
 
@@ -14,7 +15,8 @@ export default function createReducer(injectedReducer = {}) {
   const rootReducer = combineReducers({
     ...injectedReducer,
     repos,
-    info
+    info,
+    iTunes: appReducer
   });
 
   return rootReducer;
