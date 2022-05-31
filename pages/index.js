@@ -29,9 +29,9 @@ import { Card, Input, Skeleton } from 'antd';
 import { createStructuredSelector } from 'reselect';
 
 import If from '@components/If';
-import saga from '@app/store/sagas/app';
 import MusicCard from '@components/MusicCard';
 import { useInjectSaga } from '@utils/injectSaga';
+import saga from '@containers/ItunesTrackFinder/saga';
 import { searchContainerCreators } from '@containers/ItunesTrackFinder/reducer';
 import { selectSearchedTerm, selectItunesData, selectItunesError } from '@app/containers/ItunesTrackFinder/selectors';
 
