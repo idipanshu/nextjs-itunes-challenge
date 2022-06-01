@@ -87,7 +87,7 @@ const MusicCard = ({
   const router = useRouter();
 
   return (
-    <CustomCard data-testid="music-card" onClick={() => router.push(`/tracks/${trackId}`, null, { shallow: true })}>
+    <CustomCard data-testid="music-card" onClick={() => router.push(`/tracks/${trackId}`)}>
       <If condition={!isEmpty(trackName)} otherwise={intl.formatMessage({ id: 'track_name_unavailable' })}>
         <Heading>
           <If condition={short} otherwise={trackName}>
