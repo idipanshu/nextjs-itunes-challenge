@@ -26,7 +26,6 @@ const Title = styled(Text)`
   && {
     margin-bottom: 0;
     ${fonts.style.heading};
-    font-family: verdana, sans-serif;
     display: flex;
     align-self: center;
     color: ${colors.text};
@@ -35,7 +34,7 @@ const Title = styled(Text)`
 function Header(props) {
   return (
     <StyledHeader {...props} data-testid="header">
-      <Title type="heading" id="heading_text" />
+      <Title type="heading" id="heading_text" data-testid="header-title" />
     </StyledHeader>
   );
 }

@@ -10,11 +10,12 @@ export function* getItunesSongs(action) {
   const { data, ok } = response;
 
   if (ok) {
-    const result = {};
-
-    data.results.forEach((song) => {
-      result[song.trackId] = { ...song };
-    });
+    const result = data.results.reduce((prev, current) => {
+      return {
+        ...prev,
+        [current.trackId]: { ...current }
+      };
+    }, {});
 
     yield put(successGetSongs(result));
   } else {

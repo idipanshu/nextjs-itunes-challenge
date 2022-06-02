@@ -97,7 +97,9 @@ const MusicCard = ({
       </If>
 
       <FlexView>
-        <AlbumArt src={artworkUrl100} alt="album art" />
+        <If condition={artworkUrl100}>
+          <AlbumArt src={artworkUrl100} alt="album art" />
+        </If>
 
         <Info>
           <If condition={trackExplicitness !== 'notExplicit'}>
@@ -106,12 +108,14 @@ const MusicCard = ({
 
           <Text>{artistName}</Text>
 
-          <Text>
-            {intl.formatMessage({ id: 'track_price' })}:{' '}
-            <Bold>
-              {trackPrice} {currency}
-            </Bold>
-          </Text>
+          <If condition={trackPrice && currency} otherwise="-">
+            <Text>
+              {intl.formatMessage({ id: 'track_price' })}:{' '}
+              <Bold>
+                {trackPrice} {currency}
+              </Bold>
+            </Text>
+          </If>
 
           <If condition={short} otherwise={longDescription}>
             <Text>{shortDescription}</Text>
