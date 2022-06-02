@@ -31,6 +31,7 @@ module.exports = {
         map: [
           ['@app', './app'],
           ['@components', './app/components'],
+          ['@containers', './app/containers'],
           ['@themes', './app/themes'],
           ['@utils', './app/utils'],
           ['@images', './app/images'],
