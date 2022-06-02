@@ -22,7 +22,7 @@ const xxxsmall = () => css`
 `;
 
 const big = () => css`
-  font-size: 1.75rem;
+  font-size: 1.7rem;
 `;
 
 const large = () => css`
@@ -40,7 +40,9 @@ const light = () => css`
 const bold = () => css`
   font-weight: 500;
 `;
-
+const bolder = () => css`
+  font-weight: 600;
+`;
 const normal = () => css`
   font-weight: normal;
 `;
@@ -87,6 +89,7 @@ export default {
   weights: {
     light,
     bold,
+    bolder,
     normal
   }
 };
