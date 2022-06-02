@@ -1,22 +1,3 @@
-// export async function getStaticProps() {
-//   const recommendations = await getReccomendations();
-//   return {
-//     props: {
-//       recommendations
-//     }
-//   };
-// }
-
-// export function ReposPage({ recommendations }) {
-//   return <Repos recommendations={recommendations} />;
-// }
-
-// ReposPage.propTypes = {
-//   recommendations: PropTypes.arrayOf(
-//     PropTypes.shape({ id: PropTypes.number.isRequired, name: PropTypes.string.isRequired })
-//   )
-// };
-
 import React, { useState, useEffect, memo, useMemo } from 'react';
 import Head from 'next/Head';
 import { compose } from 'redux';
