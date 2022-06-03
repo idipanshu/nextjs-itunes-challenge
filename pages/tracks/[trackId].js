@@ -1,8 +1,13 @@
+import ErrorBoundary from '@utils/ErrorBoundary';
 import { getSongDetails } from '@services/songApi';
 import TrackDetails from '@containers/ItunesTrackFinder/TrackDetails';
 
 const TrackInfo = (props) => {
-  return <TrackDetails {...props} />;
+  return (
+    <ErrorBoundary>
+      <TrackDetails {...props} />
+    </ErrorBoundary>
+  );
 };
 
 export async function getServerSideProps(context) {
@@ -10,11 +15,15 @@ export async function getServerSideProps(context) {
 
   const res = await getSongDetails(trackId);
 
-  return {
-    props: {
-      fetchedTracks: res.data.results[0]
-    }
+  const props = {
+    fetchedTracks: {}
   };
+
+  if (res.ok && res.data.results[0]) {
+    props.fetchedTracks = res.data.results[0];
+  }
+
+  return { props };
 }
 
 export default TrackInfo;
