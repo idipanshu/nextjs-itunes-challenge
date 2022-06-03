@@ -6,6 +6,9 @@ const withTM = require('next-transpile-modules')([
   'react-intl',
   'intl-messageformat'
 ]);
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true'
+});
 
 const constructAlias = (config) => {
   return {
@@ -21,24 +24,29 @@ const constructAlias = (config) => {
   };
 };
 
-module.exports = withTM(
-  withImages({
-    assetPrefix: process.env.BASE_PATH || '',
-    basePath: process.env.BASE_PATH || '',
-    trailingSlash: true,
-    webpack(config) {
-      config.resolve.alias = constructAlias(config);
-      const originalEntry = config.entry;
-      config.entry = async () => {
-        const entries = await originalEntry();
+module.exports = withBundleAnalyzer(
+  withTM(
+    withImages({
+      assetPrefix: process.env.BASE_PATH || '',
+      basePath: process.env.BASE_PATH || '',
+      trailingSlash: true,
+      images: {
+        disableStaticImages: true
+      },
+      webpack(config) {
+        config.resolve.alias = constructAlias(config);
+        const originalEntry = config.entry;
+        config.entry = async () => {
+          const entries = await originalEntry();
 
-        if (entries['main.js'] && !entries['main.js'].includes('./polyfills.js')) {
-          entries['main.js'].unshift('./polyfills.js');
-        }
+          if (entries['main.js'] && !entries['main.js'].includes('./polyfills.js')) {
+            entries['main.js'].unshift('./polyfills.js');
+          }
 
-        return entries;
-      };
-      return config;
-    }
-  })
+          return entries;
+        };
+        return config;
+      }
+    })
+  )
 );
