@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> should render and match the snapshot 1`] = `
+.c1 {
+  white-space: pre-line;
+}
+
+.c0.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-color: #b59862;
+}
+
+.c0.c0.ant-layout-header {
+  padding: 0 1rem;
+  height: 7rem;
+}
+
+.c2.c2 {
+  margin-bottom: 0;
+  font-size: 2.25rem;
+  font-weight: 500;
+  font-family: verdana,sans-serif;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  color: #020826;
+}
+
+<body>
+  <div>
+    <header
+      class="ant-layout-header c0"
+      data-testid="header"
+      intl="[object Object]"
+    >
+      <span
+        class="c1 c2"
+        data-testid="header-title"
+        type="heading"
+      >
+        Search What You Like
+      </span>
+    </header>
+  </div>
+</body>
+`;
