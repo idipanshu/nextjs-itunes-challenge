@@ -1,6 +1,28 @@
 import { css } from 'styled-components';
 
 /**
+ * A function for configuring css margin.
+ * @param top
+ * @param right
+ * @param bottom
+ * @param left
+ * @returns {[]|null|string|*}
+ */
+const applyMargin = (top = '2px', right = '2px', bottom = '2px', left = '2px') => css`
+  margin: ${top} ${right} ${bottom} ${left};
+`;
+
+/**
+ * A function for configuring css padding.
+ * @param vertical
+ * @param horizontal
+ * @returns {[]|null|string|*}
+ */
+const applyPadding = (vertical = '1rem', horizontal = '1rem') => css`
+  padding: ${vertical} ${horizontal};
+`;
+
+/**
  * A function for configuring css box-shadow.
  * @param hOffset
  * @param vOffset
@@ -37,5 +59,11 @@ const defaultLinearGradient = (color1, color2) => `linear-gradient(${color1}, ${
 export default {
   boxShadow,
   defaultLinearGradient,
-  textShadow
+  textShadow,
+  margin: {
+    applyMargin
+  },
+  padding: {
+    applyPadding
+  }
 };

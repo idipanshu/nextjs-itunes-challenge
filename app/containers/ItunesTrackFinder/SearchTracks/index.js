@@ -2,6 +2,7 @@ import React, { useState, useEffect, memo, useMemo } from 'react';
 import Head from 'next/head';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
+import dynamic from 'next/dynamic';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { injectIntl } from 'react-intl';
@@ -12,7 +13,6 @@ import { createStructuredSelector } from 'reselect';
 import If from '@components/If';
 import colors from '@themes/colors';
 import injectSaga from '@utils/injectSaga';
-import MusicCard from '@components/MusicCard';
 
 import saga from '../saga';
 import { searchContainerCreators } from '../reducer';
@@ -42,6 +42,8 @@ const InputField = styled(Input)`
     color: ${colors.text};
   }
 `;
+
+const DynamicMusicCard = dynamic(() => import('@components/MusicCard'));
 
 export function SearchTracks({
   intl,
@@ -114,7 +116,7 @@ export function SearchTracks({
         <Skeleton loading={loading} active>
           <GridView>
             {tracks.map((track, index) => (
-              <MusicCard
+              <DynamicMusicCard
                 intl={intl}
                 short
                 key={index}

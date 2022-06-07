@@ -1,8 +1,10 @@
 {
   "search_tracks": "Search What You Like",
   "something_went_wrong": "Sorry. Something went wrong! Please try again in sometime.",
+  "404_error_message": "This page does not exist",
   "stories": "Go to Storybook",
   "track_name_unavailable": "Track name is unavailable",
+  "track_not_found": "No matching tracks found",
   "heading_text": "Search What You Like",
   "website_tab_title": "Search What You Like",
   "website_meta": "Search any song from iTunes",

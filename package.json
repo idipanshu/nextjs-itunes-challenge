@@ -46,6 +46,7 @@
     "@formatjs/cli": "^5.0.1",
     "@formatjs/intl-relativetimeformat": "^11.0.1",
     "@formatjs/intl-utils": "^3.8.4",
+    "@next/bundle-analyzer": "^12.1.6",
     "@testing-library/jest-dom": "^5.14.1",
     "@webcomponents/shadydom": "^1.9.0",
     "antd": "^4.20.6",

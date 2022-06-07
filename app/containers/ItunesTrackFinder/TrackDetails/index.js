@@ -7,7 +7,8 @@
 import React, { useState, useEffect, memo } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { Skeleton } from 'antd';
+import dynamic from 'next/dynamic';
+import { Skeleton, Card } from 'antd';
 import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
@@ -20,8 +21,7 @@ import { createStructuredSelector } from 'reselect';
 import If from '@components/If';
 import Text from '@app/components/Text';
 import injectSaga from '@utils/injectSaga';
-import { styles, colors, fonts } from '@app/themes';
-import MusicCard from '@components/MusicCard';
+import { styles, colors, fonts, buttons } from '@app/themes';
 
 import saga from '../saga';
 import { searchContainerCreators } from '../reducer';
@@ -77,7 +77,27 @@ const Music = styled.div`
     width: 100%;
   }
 `;
+/** Not Found */
+const CustomCard = styled(Card)`
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid ${colors.secondary};
+  border-radius: 1rem;
+`;
+const CustomCardBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const BackButton = styled.a`
+  ${styles.margin.applyMargin()}
+  ${buttons.primary()}
+`;
+/** Not Found */
 
+const DynamicMusicCard = dynamic(() => import('@components/MusicCard'));
 function SongDetailsPage({ intl, match, dispatchGetSongDetails, songsData, fetchedTracks, trackDetails, songsError }) {
   const [loading, setLoading] = useState(false);
 
@@ -86,15 +106,31 @@ function SongDetailsPage({ intl, match, dispatchGetSongDetails, songsData, fetch
   const trackId = router.query ? router.query.trackId : match.query.trackId;
 
   useEffect(() => {
-    if (isEmpty(songsData) && isEmpty(trackDetails) && isEmpty(fetchedTracks)) {
+    if (isEmpty(songsData) && isEmpty(fetchedTracks)) {
       dispatchGetSongDetails(trackId);
       setLoading(true);
+
+      if (isEmpty(trackDetails)) {
+        setLoading(false);
+      }
     }
   }, [dispatchGetSongDetails, fetchedTracks, songsData, trackDetails, trackId]);
 
   return (
     <Container>
-      <If condition={!isEmpty(fetchedTracks) || loading}>
+      <If
+        condition={!isEmpty(fetchedTracks) || loading}
+        otherwise={
+          <CustomCard>
+            <CustomCardBody>
+              <Text color="red" fontsize="font-size: 1.7rem">
+                {intl.formatMessage({ id: 'track_not_found' })}
+              </Text>
+              <BackButton href="/">{intl.formatMessage({ id: 'go_home_button_text' })}</BackButton>
+            </CustomCardBody>
+          </CustomCard>
+        }
+      >
         <Head>
           <title>{fetchedTracks ? fetchedTracks.trackName : intl.formatMessage({ id: 'website_tab_title' })}</title>
           <meta
@@ -133,7 +169,7 @@ function SongDetailsPage({ intl, match, dispatchGetSongDetails, songsData, fetch
             </Body>
 
             <Music>
-              <MusicCard {...fetchedTracks} intl={intl} />
+              <DynamicMusicCard {...fetchedTracks} intl={intl} />
             </Music>
           </FlexView>
         </Skeleton>
