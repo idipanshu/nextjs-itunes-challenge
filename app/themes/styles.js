@@ -13,6 +13,16 @@ const applyMargin = (top = '2px', right = '2px', bottom = '2px', left = '2px') =
 `;
 
 /**
+ * A function for configuring css padding.
+ * @param vertical
+ * @param horizontal
+ * @returns {[]|null|string|*}
+ */
+const applyPadding = (vertical = '1rem', horizontal = '1rem') => css`
+  padding: ${vertical} ${horizontal};
+`;
+
+/**
  * A function for configuring css box-shadow.
  * @param hOffset
  * @param vOffset
@@ -52,5 +62,8 @@ export default {
   textShadow,
   margin: {
     applyMargin
+  },
+  padding: {
+    applyPadding
   }
 };

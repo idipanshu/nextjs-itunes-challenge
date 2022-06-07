@@ -21,7 +21,7 @@ import { createStructuredSelector } from 'reselect';
 import If from '@components/If';
 import Text from '@app/components/Text';
 import injectSaga from '@utils/injectSaga';
-import { styles, colors, fonts } from '@app/themes';
+import { styles, colors, fonts, buttons } from '@app/themes';
 
 import saga from '../saga';
 import { searchContainerCreators } from '../reducer';
@@ -83,6 +83,17 @@ const CustomCard = styled(Card)`
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid ${colors.secondary};
+  border-radius: 1rem;
+`;
+const CustomCardBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const BackButton = styled.a`
+  ${styles.margin.applyMargin()}
+  ${buttons.primary()}
 `;
 /** Not Found */
 
@@ -111,8 +122,12 @@ function SongDetailsPage({ intl, match, dispatchGetSongDetails, songsData, fetch
         condition={!isEmpty(fetchedTracks) || loading}
         otherwise={
           <CustomCard>
-            <Text type="danger">{intl.formatMessage({ id: 'track_not_found' })}</Text>
-            <Link href="/">{intl.formatMessage({ id: 'go_home_button_text' })}</Link>
+            <CustomCardBody>
+              <Text color="red" fontsize="font-size: 1.7rem">
+                {intl.formatMessage({ id: 'track_not_found' })}
+              </Text>
+              <BackButton href="/">{intl.formatMessage({ id: 'go_home_button_text' })}</BackButton>
+            </CustomCardBody>
           </CustomCard>
         }
       >
