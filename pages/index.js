@@ -1,25 +1,5 @@
-import { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import Repos from '@app/containers/Repos/index';
-import { getReccomendations } from '@services/root';
+import SearchTracks from '@containers/ItunesTrackFinder/SearchTracks';
 
-export async function getStaticProps() {
-  const recommendations = await getReccomendations();
-  return {
-    props: {
-      recommendations
-    }
-  };
-}
+const App = () => <SearchTracks />;
 
-export function ReposPage({ recommendations = [] }) {
-  return <Repos recommendations={recommendations} />;
-}
-
-ReposPage.propTypes = {
-  recommendations: PropTypes.arrayOf(
-    PropTypes.shape({ id: PropTypes.number.isRequired, name: PropTypes.string.isRequired })
-  )
-};
-
-export default ReposPage;
+export default App;

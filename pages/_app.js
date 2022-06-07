@@ -5,6 +5,7 @@ import colors from '@themes/colors';
 import GlobalStyle from '@app/global-styles';
 import { translationMessages, DEFAULT_LOCALE } from '@app/i18n';
 import { wrapper } from '@app/configureStore';
+import Header from '@components/Header';
 import 'antd/dist/antd.css';
 
 const theme = {
@@ -27,6 +28,7 @@ class MyApp extends App {
       <IntlProvider locale={DEFAULT_LOCALE} key={DEFAULT_LOCALE} messages={translationMessages[DEFAULT_LOCALE]}>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
+          <Header />
           <Component {...pageProps} />
         </ThemeProvider>
       </IntlProvider>

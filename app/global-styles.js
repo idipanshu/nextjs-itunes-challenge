@@ -5,12 +5,13 @@ const GlobalStyle = createGlobalStyle`
     -webkit-overflow-scrolling: touch !important;
     scroll-behavior: smooth;
     -ms-overflow-style: none;
-    display: block;
+    margin: 0;
+    padding: 0;
   }
   
   p,
   label {
-    font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family:'Verdana', Helvetica, Arial, sans-serif;
     line-height: 1.5;
     color: ${({ theme }) => theme.colors.text};
   }
@@ -26,8 +27,15 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
+  audio {
+    max-height: 100%;
+    object-fit: contain;
+    width: 100%;
+    margin: auto;
+  }
+
   #app {
-    background-color: #fafafa;
+    background-color: #f5f1ed;
     min-height: 100%;
     min-width: 100%;
   }

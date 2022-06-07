@@ -11,6 +11,7 @@ const constructAlias = (config) => {
   return {
     '@app': path.resolve(__dirname, './app'),
     '@components': path.resolve(__dirname, './app/components'),
+    '@containers': path.resolve(__dirname, './app/containers'),
     '@themes': path.resolve(__dirname, './app/themes'),
     '@utils': path.resolve(__dirname, './app/utils'),
     '@images': path.resolve(__dirname, './app/images'),
